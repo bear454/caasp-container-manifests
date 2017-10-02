@@ -186,6 +186,9 @@ spec:
     - mountPath: /var/lib/misc/infra-secrets
       name: infra-secrets
       readOnly: True
+    - mountPath: /srv/pillar/csp.sls
+      name: public-cloud-config
+      readOnly: True
   - name: salt-api
     image: sles12/salt-api:__TAG__
     volumeMounts:
@@ -523,3 +526,6 @@ spec:
     - name: infra-secrets
       hostPath:
         path: /var/lib/misc/infra-secrets
+    - name: public-cloud-config
+      hostPath:
+        path: /srv/pillar/csp.sls
