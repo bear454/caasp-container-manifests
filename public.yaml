@@ -189,6 +189,10 @@ spec:
     - mountPath: /srv/pillar/csp.sls
       name: public-cloud-config
       readOnly: True
+    - mountPath: /etc/salt/cloud.providers
+      name: salt-cloud-providers
+    - mountPath: /etc/salt/cloud.profiles
+      name: salt-cloud-profiles
   - name: salt-api
     image: sles12/salt-api:__TAG__
     volumeMounts:
@@ -311,6 +315,10 @@ spec:
       - mountPath: /var/lib/misc/infra-secrets
         name: infra-secrets
         readOnly: True
+      - mountPath: /var/lib/misc/salt-cloud/cloud.providers
+        name: salt-cloud-providers
+      - mountPath: /var/lib/misc/salt-cloud/cloud.profiles
+        name: salt-cloud-profiles
     args: ["bin/init"]
   - name: openldap
     image: sles12/openldap:__TAG__
@@ -529,3 +537,9 @@ spec:
     - name: public-cloud-config
       hostPath:
         path: /srv/pillar/csp.sls
+    - name: salt-cloud-providers
+      hostPath:
+        path: /var/lib/misc/salt-cloud/cloud.providers
+    - name: salt-cloud-profiles
+      hostPath:
+        path: /var/lib/misc/salt-cloud/cloud.profiles
